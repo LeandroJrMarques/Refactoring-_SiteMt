@@ -41,7 +41,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 #vejaNossosTrabalhos {
     position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
     border: 1px solid white; border-radius: 5px;
-    background-color: rgba(255, 120, 30, 0.65); /* Transparência original */
+    background-color: rgba(255, 120, 30, 0.65); 
     height: 50px; padding: 0 25px; display: flex; align-items: center;
     transition: background 0.5s; cursor: pointer; z-index: 20;
 }
@@ -53,7 +53,6 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 .control-nav i { color: rgba(255, 150, 0, 0.42); font-size: 55pt; transition: color 0.3s; }
 .control-nav:hover i { color: white; }
 
-/* Secções e Trabalhos */
 .panel {
     background-image: url('../images/bg.jpg');
     background-attachment: fixed;
@@ -70,11 +69,66 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 
 .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 40px 20px; }
 
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal.active {
+    display: flex !important;
+}
+
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+
+.modal-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 800px; 
+    aspect-ratio: 16 / 9; 
+    background: #000;
+    z-index: 1001;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+}
 .btn-load-more { background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 4px; cursor: pointer; display: block; margin: 0 auto; }
 
 .empresa-box { background-image: url('../images/bg_empresa.png'); width: 65%; float: right; padding: 30px; color: #333; }
 
-/* Container dos filtros para garantir distanciamento do cabeçalho */
 .gallery-filter {
     margin: 40px 0;
     text-align: center;
@@ -100,7 +154,6 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     transition: all 0.3s ease;
 }
 
-/* Efeito de Hover e Estado Ativo */
 .btn-filter:hover,
 .btn-filter.active {
     background-color: #DF912E !important;
@@ -136,7 +189,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 .clients-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 4px; /* Espaço entre as logos */
+    gap: 4px; 
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -186,9 +239,9 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     margin: 0;
 }
 
-/* Customização para a Seção de Clientes Modularizada */
+
 .clients-white-bg {
-    background: #ffffff !important; /* Sobrescreve o bg.jpg padrão das panels */
+    background: #ffffff !important; 
     padding: 80px 0;
 }
 
