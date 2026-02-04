@@ -200,6 +200,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     transition: color 0.3s ease;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -237,9 +238,9 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 
 .btn-load-more:hover {
     top: -5px; 
-    background-color: rgba(255, 150, 0, 0.8);
+    background-color: #e69d00e1;
     color: #fff;
-    box-shadow: 0 10px 20px rgb(71, 64, 1); 
+    box-shadow: 0 10px 20px rgb(59, 36, 0); 
     transform: scale(1.05); 
 }
 
