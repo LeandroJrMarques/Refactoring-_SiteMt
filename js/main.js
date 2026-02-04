@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // === Header Dinâmico ===
+    // === 1. Header Dinâmico ===
     const header = document.getElementById('site-header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) header.classList.add('smaller-header');
         else header.classList.remove('smaller-header');
     });
 
-    // === Lógica do Banner ===
-document.addEventListener('DOMContentLoaded', () => {
+    // === 2. Lógica do Banner (Código unificado) ===
     const slides = document.querySelectorAll('.slide');
     const btnNext = document.getElementById('btn-next');
     const btnPrev = document.getElementById('btn-prev');
@@ -16,29 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let currentSlide = 0;
     let autoPlayTimer = null;
-    const duration = 5000; // 5 segundos
+    const duration = 8000; 
 
     if (slides.length === 0) {
         console.error("Erro: Nenhum slide encontrado com a classe .slide");
         return;
     }
 
-    // Função para mudar o slide
     function updateSlide(newIndex) {
-        // Remove classes de todos
         slides.forEach((slide) => {
             slide.classList.remove('active', 'prev');
         });
 
-        // Adiciona classe 'prev' ao que vai sair e 'active' ao novo
         slides[currentSlide].classList.add('prev');
         slides[newIndex].classList.add('active');
 
-        // Atualiza bolinhas (indicators)
         const dots = document.querySelectorAll('.indicator');
         dots.forEach((dot, i) => dot.classList.toggle('active', i === newIndex));
 
-        // Atualiza contador
         const counter = document.getElementById('counter-current');
         if (counter) counter.textContent = String(newIndex + 1).padStart(2, '0');
 
@@ -68,24 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (autoPlayTimer) clearInterval(autoPlayTimer);
     }
 
-    // Configurar botões
     if (btnNext) {
         btnNext.addEventListener('click', () => {
-            let next = (currentSlide + 1) % slides.length;
-            updateSlide(next);
-            startAutoPlay(); // Reinicia o tempo ao clicar
+            updateSlide((currentSlide + 1) % slides.length);
         });
     }
 
     if (btnPrev) {
         btnPrev.addEventListener('click', () => {
-            let prev = (currentSlide - 1 + slides.length) % slides.length;
-            updateSlide(prev);
-            startAutoPlay();
+            updateSlide((currentSlide - 1 + slides.length) % slides.length);
         });
     }
 
-    // Criar indicadores dinâmicos se o container existir
     if (indicatorsContainer && indicatorsContainer.innerHTML === "") {
         slides.forEach((_, i) => {
             const dot = document.createElement('button');
@@ -93,25 +81,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i === 0) dot.classList.add('active');
             dot.addEventListener('click', () => {
                 updateSlide(i);
-                startAutoPlay();
             });
             indicatorsContainer.appendChild(dot);
         });
     }
 
-    // Iniciar
-    updateSlide(0);
+    // Inicialização
     startAutoPlay();
 
-    // Pausa ao passar o rato
     const carousel = document.querySelector('.hero-carousel');
     if (carousel) {
-        carousel.addEventListener('mouseenter', stopAutoPlay);
-        carousel.addEventListener('mouseleave', startAutoPlay);
+        carousel.addEventListener('mouseenter');
+        carousel.addEventListener('mouseleave');
     }
-});
 
-    // === Lógica de Clientes (Modularizada e Local) ===
+    // === 3. Lógica de Clientes ===
     const clientImages = [
         "Cagepa_Logo.png", "Neoenergia_Logo.png", "Rio_Ave_Logo.png", "abreu.png",
         "ade.png", "amway.png", "assolan-logo.png", "auxiliadora.png", 
@@ -140,4 +124,5 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     renderClients();
+    
 });
