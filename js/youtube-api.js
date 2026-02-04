@@ -1,12 +1,11 @@
 /**
- * Lógica de Integração com YouTube API v3
- * Responsável por: Busca de vídeos, Filtros e Renderização da Galeria
+ * Lógica de Integração com YouTube API v3 - Corrigida
  */
 
 const CONFIG = {
-    API_KEY: 'AIzaSyCLUQbHibaLinVQu-MgyWzsAECb3R9OpTg', //
-    CHANNEL_ID: 'UCjv4LZFX_kVigZybGhztTRw', //
-    MAX_RESULTS: 12 //
+    API_KEY: 'AIzaSyCLUQbHibaLinVQu-MgyWzsAECb3R9OpTg',
+    CHANNEL_ID: 'UCjv4LZFX_kVigZybGhztTRw',
+    MAX_RESULTS: 12
 };
 
 let state = {
@@ -34,10 +33,10 @@ const CATEGORIAS = {
     "Videos Institucionais": "Videos Institucionais",
 };
 
-// Inicialização segura
 document.addEventListener('DOMContentLoaded', async () => {
     renderizarFiltros();
     await iniciarGaleria();
+    configurarFecharModal(); // Nova função para gerenciar o fechamento
 });
 
 async function iniciarGaleria() {
@@ -53,7 +52,7 @@ async function iniciarGaleria() {
         await carregarMaisVideos();
     } catch (error) {
         console.error("Falha ao carregar galeria:", error);
-        exibirErro("Não foi possível conectar ao YouTube. Verifique sua chave de API ou conexão.");
+        exibirErro("Não foi possível conectar ao YouTube. Verifique sua chave de API.");
     }
 }
 
@@ -68,7 +67,11 @@ async function carregarMaisVideos() {
         const dataList = await res.json();
         
         state.nextPageToken = dataList.nextPageToken || '';
-        if (!state.nextPageToken && btn) btn.style.display = 'none';
+        
+        // Esconder botão se não houver mais páginas
+        if (btn) {
+            btn.style.display = state.nextPageToken ? 'block' : 'none';
+        }
 
         const novosVideos = dataList.items.map(item => ({
             id: item.snippet.resourceId.videoId,
@@ -82,7 +85,7 @@ async function carregarMaisVideos() {
     } catch (e) {
         console.error("Erro ao carregar mais vídeos:", e);
     } finally {
-        if (btn) btn.innerText = "Carregar Mais Vídeos";
+        if (btn) btn.innerText = "Carregar Mais";
     }
 }
 
@@ -108,6 +111,40 @@ function renderizarGaleria() {
     `).join('');
 }
 
+// --- FUNÇÕES DE INTERAÇÃO (MODAL) ---
+
+function abrirVideo(videoId) {
+    const modal = document.getElementById('video-modal');
+    const iframe = document.getElementById('modal-iframe');
+    
+    if (modal && iframe) {
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        modal.style.display = 'block'; // Garante visibilidade
+        modal.classList.add('active');
+    }
+}
+
+function fecharModal() {
+    const modal = document.getElementById('video-modal');
+    const iframe = document.getElementById('modal-iframe');
+    
+    if (modal && iframe) {
+        iframe.src = ""; // Para o vídeo imediatamente
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+    }
+}
+
+function configurarFecharModal() {
+    const closeBtn = document.querySelector('.modal-close');
+    const overlay = document.querySelector('.modal-overlay');
+
+    closeBtn?.addEventListener('click', fecharModal);
+    overlay?.addEventListener('click', fecharModal);
+}
+
+// --- FILTROS E UTILITÁRIOS ---
+
 function renderizarFiltros() {
     const container = document.getElementById('filter-container');
     if (!container) return;
@@ -131,3 +168,6 @@ function exibirErro(msg) {
     const container = document.getElementById('gallery');
     if (container) container.innerHTML = `<div class="error-msg">${msg}</div>`;
 }
+
+// Vincular evento ao botão "Carregar Mais" do HTML
+document.getElementById('btnLoadMore')?.addEventListener('click', carregarMaisVideos);
