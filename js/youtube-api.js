@@ -1,5 +1,5 @@
 /**
- * Lógica de Integração com YouTube API v3 - Corrigida
+ * Lógica de Integração com YouTube API v3 
  */
 
 const CONFIG = {
