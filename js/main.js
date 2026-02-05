@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let currentSlide = 0;
     let autoPlayTimer = null;
-    const duration = 5000; 
+    const duration = 8000; 
 
     if (slides.length > 0) {
         function updateSlide(newIndex) {
