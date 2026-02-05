@@ -10,22 +10,52 @@
 body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF; }
 
 /* Header e Menu */
+/* Estado Normal do Header */
 #site-header {
     background-image: url('../images/bg_cabecario.png');
     height: 100px;
     position: fixed;
     width: 100%;
     z-index: 1000;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease-in-out; /* Transição suave para todos os elementos */
+    display: flex;
+    align-items: center;
 }
-#site-header.smaller-header { background: white !important;
-     height: 70px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      background: #FFFFFF !important;
-     }
-     
-.header-flex { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.flags-bar img { width: 22px; margin-left: 5px; cursor: left; }
+
+/* Estado da Logo Normal */
+#site-header .logo {
+    height: 60px; /* Ajuste conforme o tamanho original da sua logo */
+    transition: all 0.4s ease-in-out;
+}
+
+/* === Efeito ao Scrollar (Header Menor) === */
+#site-header.smaller-header {
+    height: 70px; /* Reduz a altura do header */
+    background: #FFFFFF !important; /* Muda para fundo branco sólido */
+    background-image: none !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Reduz a Logo e "sobe" ela levemente */
+#site-header.smaller-header .logo {
+    height: 45px; /* A logo diminui e parece "subir" devido ao alinhamento central */
+    transform: translateY(-2px); /* Pequeno ajuste fino de posição se necessário */
+}
+
+/* Ajusta as bandeiras e o menu para o novo tamanho */
+#site-header.smaller-header #site-nav ul li a {
+    color: #333; /* Muda a cor do texto para contrastar com o fundo branco */
+}
+/* Atualize a classe .header-flex no seu style.css */
+.header-flex {
+    display: flex;
+    justify-content: space-between; /* Mantém logo à esquerda e menu à direita */
+    align-items: center; /* Centraliza verticalmente todos os itens */
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px; /* Aumentamos o respiro lateral para 40px */
+}
 #site-nav ul { display: flex; list-style: none; }
 #site-nav ul li { margin-left: 30px; }
 #site-nav ul li a { font-weight: bold; text-transform: uppercase; font-size: 14px; text-decoration: none; color: #e4e0e0; }
@@ -45,24 +75,21 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 .banner-slides { list-style: none; height: 100%; }
 
 .slide {
-    position: absolute;
-    inset: 0;
     opacity: 0;
-    transform: scale(1.05); 
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    z-index: 1;
+    transition: opacity 0.5s ease-in-out;
+    display: block; 
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .slide.active {
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important; 
     z-index: 2;
-    transform: scale(1);
 }
 
 .slide.prev {
     opacity: 0;
-    transform: scale(1.1);
     z-index: 1;
 }
 
@@ -321,7 +348,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     transform: translate(-50%, -50%) scale(0.5);
     opacity: 0;
     transition: all 0.3s ease;
-    background: rgba(255, 0, 0, 0.8);
+    background: rgba(255, 145, 0, 0.8);
     color: white;
     width: 60px;
     height: 60px;
