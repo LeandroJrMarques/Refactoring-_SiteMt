@@ -5,7 +5,7 @@
 const CONFIG = {
     API_KEY: 'AIzaSyCLUQbHibaLinVQu-MgyWzsAECb3R9OpTg',
     CHANNEL_ID: 'UCjv4LZFX_kVigZybGhztTRw',
-    MAX_RESULTS: 12
+    MAX_RESULTS: 8
 };
 
 let state = {
@@ -36,7 +36,7 @@ const CATEGORIAS = {
 document.addEventListener('DOMContentLoaded', async () => {
     renderizarFiltros();
     await iniciarGaleria();
-    configurarFecharModal(); // Nova função para gerenciar o fechamento
+    configurarFecharModal(); 
 });
 
 async function iniciarGaleria() {
@@ -68,7 +68,6 @@ async function carregarMaisVideos() {
         
         state.nextPageToken = dataList.nextPageToken || '';
         
-        // Esconder botão se não houver mais páginas
         if (btn) {
             btn.style.display = state.nextPageToken ? 'block' : 'none';
         }
