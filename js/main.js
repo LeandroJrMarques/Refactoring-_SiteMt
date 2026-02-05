@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+// Lógica básica para abrir/fechar menu em mobile
+const menuBtn = document.getElementById('mobile-menu-btn');
+const nav = document.getElementById('site-nav');
+
+if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+        nav.classList.toggle('active-mobile');
+    });
+}
 
     // === 1. Lógica do Banner ===
     const slides = document.querySelectorAll('.slide');
@@ -7,7 +16,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnPrev = document.getElementById('btn-prev');
     const progressBar = document.getElementById('progress-fill');
     const indicatorsContainer = document.getElementById('carousel-indicators');
-    
+
+    // === Lógica de toque para dispositivos móveis ===
+const carousel = document.querySelector('.carousel-container');
+let touchStartX = 0;
+let touchEndX = 0;
+
+if (carousel) {
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50; 
+        if (touchStartX - touchEndX > swipeThreshold) {
+            updateSlide((currentSlide + 1) % slides.length);
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+            updateSlide((currentSlide - 1 + slides.length) % slides.length);
+        }
+    }
+}
     let currentSlide = 0;
     let autoPlayTimer = null;
     const duration = 8000; 
@@ -125,9 +158,6 @@ const renderClients = () => {
         });
     }
 };
-
-        
-
 
 renderClients();
 });

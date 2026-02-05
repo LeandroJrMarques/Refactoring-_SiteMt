@@ -720,3 +720,165 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     margin-left: 15px;
     text-decoration: none;
 }
+
+/* === Ajustes Mobile === */
+@media (max-width: 768px) {
+    /* Header e Menu */
+    .header-flex {
+        padding: 0 20px;
+    }
+
+    #site-nav {
+        display: none; /* Idealmente, aqui implementarias um menu hambúrguer */
+    }
+
+    /* Banner/Carrossel */
+    .hero-carousel {
+        height: 60vh; 
+    }
+
+    .slide-content {
+        left: 5%;
+        bottom: 10%;
+        padding-right: 20px;
+    }
+
+    .slide-title {
+        font-size: 1.8rem; 
+    }
+
+    .counter {
+        top: 80px;
+        right: 20px;
+        font-size: 0.8rem;
+    }
+
+    .nav-arrow {
+        display: none; /* Remove setas em mobile para evitar cliques acidentais */
+    }
+
+    /* Secção Empresa */
+    .empresa-box {
+        width: 100%; /* Ocupa a largura toda em vez de 65% */
+        float: none;
+        padding: 20px;
+    }
+
+    .empresa-box img {
+        max-width: 200px;
+    }
+
+    /* Grelha de Vídeos e Clientes */
+    .video-grid {
+        grid-template-columns: 1fr; 
+        gap: 15px;
+    }
+
+#clients-section {
+        padding: 40px 0 !important;
+    }
+
+    .client-subtitle {
+        margin-bottom: 20px !important;
+        font-size: 10px !important;
+    }
+
+    /* Transforma a grade em 3 colunas para evitar ícones muito pequenos */
+    .clients-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 2px !important; /* Espaçamento mínimo entre os logos */
+        padding: 0 10px;
+    }
+
+    /* Reduz o tamanho dos containers dos logos */
+    .client-item {
+        padding: 12px !important;
+        background-color: #f9f9f9;
+    }
+
+    /* Ajusta a altura máxima dos logos para não quebrarem o layout */
+    .client-logo {
+        max-height: 35px !important;
+        opacity: 0.8 !important; /* Melhora a harmonia visual no mobile */
+        filter: grayscale(0); 
+    }
+}
+
+    /* Painéis */
+    .panel {
+        padding: 60px 0;
+        background-attachment: scroll; /* Melhora performance em mobile */
+    }
+
+    .panel-heading h1 {
+        font-size: 28px;
+    }
+
+    .panel-heading h1::before, .panel-heading h1::after {
+        display: none; 
+    }
+
+    /* Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        padding: 20px 15px !important; /* Reduzido de 60px para 20px */
+        gap: 20px !important; /* Diminui o espaço entre as colunas/seções */
+    }
+
+    .footer-brand .brand-logo {
+        margin-bottom: 10px !important;
+    }
+
+    .brand-description {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Diminui o tamanho dos títulos das seções */
+    .footer-contact h4, 
+    .footer-links h4 {
+        margin-bottom: 15px !important;
+        font-size: 1rem !important;
+    }
+
+    /* Reduz o tamanho dos itens de contato e ícones */
+    .contact-list, 
+    .links-list {
+        gap: 8px !important; 
+    }
+
+    .contact-icon {
+        width: 28px !important; 
+        height: 28px !important;
+        min-width: 28px;
+    }
+
+    .contact-icon svg {
+        width: 14px !important;
+    }
+
+    /* Ajusta o rodapé inferior (copyright) */
+    .footer-bottom {
+        padding: 10px 20px !important;
+    }
+
+    .copyright {
+        font-size: 0.75rem !important;
+    }
+}
+
+/* Esconde as bolinhas do carrossel em dispositivos móveis */
+@media (max-width: 768px) {
+    .indicators {
+        display: none !important;
+    }
+}
+
+.carousel-container {
+    touch-action: pan-y; 
+    user-select: none;   
+}
+
+.slide-image {
+    pointer-events: none; 
+}
