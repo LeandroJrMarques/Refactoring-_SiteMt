@@ -10,58 +10,63 @@
 body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF; }
 
 /* Header e Menu */
-/* Estado Normal do Header */
 #site-header {
     background-image: url('../images/bg_cabecario.png');
     height: 100px;
     position: fixed;
     width: 100%;
     z-index: 1000;
-    transition: all 0.4s ease-in-out; /* Transição suave para todos os elementos */
+    transition: all 0.4s ease-in-out; 
     display: flex;
     align-items: center;
 }
 
-/* Estado da Logo Normal */
 #site-header .logo {
-    height: 60px; /* Ajuste conforme o tamanho original da sua logo */
+    height: 60px;
     transition: all 0.4s ease-in-out;
 }
 
-/* === Efeito ao Scrollar (Header Menor) === */
-#site-header.smaller-header {
-    height: 70px; /* Reduz a altura do header */
-    background: #FFFFFF !important; /* Muda para fundo branco sólido */
+/* === Parte não utilizada, mas que pode ser ativada para um efeito de header menor ao rolar. (falta js) === */
+
+
+/*#site-header.smaller-header {
+    height: 70px; 
+    /*background: #FFFFFF !important;  Muda para fundo branco sólido 
     background-image: none !important;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+}*/
 
-/* Reduz a Logo e "sobe" ela levemente */
+/* Reduz a Logo e "sobe" ela levemente 
 #site-header.smaller-header .logo {
-    height: 45px; /* A logo diminui e parece "subir" devido ao alinhamento central */
-    transform: translateY(-2px); /* Pequeno ajuste fino de posição se necessário */
-}
+    height: 45px;
+    transform: translateY(-2px);  
+} */
 
-/* Ajusta as bandeiras e o menu para o novo tamanho */
+/* 
 #site-header.smaller-header #site-nav ul li a {
-    color: #333; /* Muda a cor do texto para contrastar com o fundo branco */
-}
-/* Atualize a classe .header-flex no seu style.css */
+    color: #333; /* Muda a cor do texto para contrastar com o fundo branco 
+}*/
+ 
+
+
+
+/* Atualize a classe .header-flex no seu style.css  */
+
 .header-flex {
     display: flex;
-    justify-content: space-between; /* Mantém logo à esquerda e menu à direita */
-    align-items: center; /* Centraliza verticalmente todos os itens */
+    justify-content: space-between; 
+    align-items: center; 
     height: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px; /* Aumentamos o respiro lateral para 40px */
+    padding: 0 40px; 
 }
 #site-nav ul { display: flex; list-style: none; }
 #site-nav ul li { margin-left: 30px; }
 #site-nav ul li a { font-weight: bold; text-transform: uppercase; font-size: 14px; text-decoration: none; color: #e4e0e0; }
 #site-nav ul li a:hover { color: var(--primary); }
 
-/* Banner Funcinal */
+/* Banner */
 .hero-carousel {
     position: relative;
     width: 100%;
@@ -307,7 +312,9 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     cursor: pointer;
 }
 
-/* Estilização base do card de vídeo */
+
+
+/* === Estilização base do card de vídeo === */
 .video-card {
     cursor: pointer;
     background: #fff;
@@ -397,7 +404,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     font-style: italic;
 }
 
-/* Estilo Base do Botão Carregar Mais */
+    /* === Estilo Base do Botão Carregar Mais === */
 .btn-load-more {
     display: block;
     margin: 40px auto;
@@ -451,7 +458,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     z-index: 10;
 }
 
-/* Estilo base dos botões de categoria */
+    /* Estilo base dos botões de categoria */
 .btn-filter {
     background: #777777;
     display: inline-block;
@@ -484,7 +491,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     padding-top: 130px;
 }
 
-/* Seção Clientes */
+        /* === Seção Clientes === */
 #clients-section {
     background-color: #ffffff;
     padding: 80px 0;
@@ -609,7 +616,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     opacity: 1;
 }
 
-/* --- Estilos do Footer --- */
+    /* === Estilos do Footer === */
 .footer {
     background-color: #353434; 
     color: #ffffff;
@@ -653,7 +660,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 .footer-contact h4, .footer-links h4 {
     font-size: 1.1rem;
     margin-bottom: 25px;
-    border-bottom: 2px solid #e69d00e1; /* Linha vermelha para destaque */
+    border-bottom: 2px solid #e69d00e1; 
     display: inline-block;
     padding-bottom: 5px;
 }
@@ -759,7 +766,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 
     /* Secção Empresa */
     .empresa-box {
-        width: 100%; /* Ocupa a largura toda em vez de 65% */
+        width: 100%; 
         float: none;
         padding: 20px;
     }
@@ -786,28 +793,28 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     /* Transforma a grade em 3 colunas para evitar ícones muito pequenos */
     .clients-grid {
         grid-template-columns: repeat(3, 1fr) !important;
-        gap: 2px !important; /* Espaçamento mínimo entre os logos */
+        gap: 2px !important; 
         padding: 0 10px;
     }
 
-    /* Reduz o tamanho dos containers dos logos */
+    /* Reduz o tamanho dos containers dos logos para o celular */
     .client-item {
         padding: 12px !important;
         background-color: #f9f9f9;
     }
 
-    /* Ajusta a altura máxima dos logos para não quebrarem o layout */
+    /* Ajusta a altura máxima dos logos para não quebrarem o layout no celular */
     .client-logo {
         max-height: 35px !important;
-        opacity: 0.8 !important; /* Melhora a harmonia visual no mobile */
+        opacity: 0.8 !important; 
         filter: grayscale(0); 
     }
 }
 
-    /* Painéis */
+    /* Painéis mobile */
     .panel {
         padding: 60px 0;
-        background-attachment: scroll; /* Melhora performance em mobile */
+        background-attachment: scroll; 
     }
 
     .panel-heading h1 {
@@ -818,11 +825,11 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         display: none; 
     }
 
-    /* Footer */
+    /* Footer Mobile */
 @media (max-width: 768px) {
     .footer-content {
-        padding: 20px 15px !important; /* Reduzido de 60px para 20px */
-        gap: 20px !important; /* Diminui o espaço entre as colunas/seções */
+        padding: 20px 15px !important; 
+        gap: 20px !important; 
     }
 
     .footer-brand .brand-logo {
@@ -868,17 +875,17 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 }
 
 /* Esconde as bolinhas do carrossel em dispositivos móveis */
-@media (max-width: 768px) {
-    .indicators {
-        display: none !important;
+    @media (max-width: 768px) {
+        .indicators {
+            display: none !important;
+        }
     }
-}
 
-.carousel-container {
-    touch-action: pan-y; 
-    user-select: none;   
-}
+    .carousel-container {
+        touch-action: pan-y; 
+        user-select: none;   
+    }
 
-.slide-image {
-    pointer-events: none; 
-}
+    .slide-image {
+        pointer-events: none; 
+    }

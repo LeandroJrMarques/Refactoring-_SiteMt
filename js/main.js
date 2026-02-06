@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-// Lógica básica para abrir/fechar menu em mobile
-const menuBtn = document.getElementById('mobile-menu-btn');
-const nav = document.getElementById('site-nav');
 
-if (menuBtn) {
-    menuBtn.addEventListener('click', () => {
-        nav.classList.toggle('active-mobile');
-    });
-}
+// === Lógica do Menu Mobile (Pode ser implementado com alguns ajustes) ===
+
+//const menuBtn = document.getElementById('mobile-menu-btn');
+//const nav = document.getElementById('site-nav');
+
+//if (menuBtn) {
+//    menuBtn.addEventListener('click', () => {
+//        nav.classList.toggle('active-mobile');
+//    });
+//}
+
 
     // === 1. Lógica do Banner ===
     const slides = document.querySelectorAll('.slide');
@@ -41,6 +44,10 @@ if (carousel) {
         }
     }
 }
+// === Fim da lógica de toque ===
+
+// === Variáveis para controle do slide e autoplay ===
+
     let currentSlide = 0;
     let autoPlayTimer = null;
     const duration = 8000; 
