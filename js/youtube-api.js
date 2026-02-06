@@ -75,6 +75,7 @@ async function carregarMaisVideos() {
         const novosVideos = dataList.items.map(item => ({
             id: item.snippet.resourceId.videoId,
             titulo: item.snippet.title,
+            descricao: item.snippet.description,
             thumb: item.snippet.thumbnails.medium.url,
             data: new Date(item.snippet.publishedAt).toLocaleDateString('pt-BR')
         }));
@@ -88,13 +89,19 @@ async function carregarMaisVideos() {
     }
 }
 
-function renderizarGaleria() {
-    const container = document.getElementById('gallery');
-    if (!container) return;
+    function renderizarGaleria() {
+        const container = document.getElementById('gallery');
+        if (!container) return;
 
-    const filtrados = state.filtroAtual === 'all' 
-        ? state.videosCache 
-        : state.videosCache.filter(v => v.titulo.toLowerCase().includes(state.filtroAtual.toLowerCase()));
+        const filtrados = state.filtroAtual === 'all' 
+            ? state.videosCache 
+            : state.videosCache.filter(v => {
+        const termo = state.filtroAtual.toLowerCase();
+                const noTitulo = v.titulo.toLowerCase().includes(termo);
+                const naDescricao = v.descricao ? v.descricao.toLowerCase().includes(termo) : false;
+                    
+                    return noTitulo || naDescricao; 
+                });
 
     container.innerHTML = filtrados.map(v => `
         <article class="video-card" onclick="abrirVideo('${v.id}')">
