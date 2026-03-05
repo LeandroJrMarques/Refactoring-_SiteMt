@@ -13,7 +13,7 @@ let state = {
     uploadsPlaylistId: '',
     videosCache: [],
     filtroAtual: 'all',
-    limiteExibicao: 8 
+    limiteExibicao: 6 
 };
 
 const CATEGORIAS = {
@@ -137,7 +137,7 @@ function renderizarGaleria() {
 }
 
 function carregarMaisVideos() {
-    state.limiteExibicao += 8;
+    state.limiteExibicao += 6;
     renderizarGaleria();
 }
 // --- FUNÇÕES DE INTERAÇÃO (MODAL) ---
@@ -189,7 +189,7 @@ function renderizarFiltros() {
 async function setFiltro(chave, elemento) {
     state.filtroAtual = chave;
     state.filtroAtual = chave;
-    state.limiteExibicao = 8;
+    state.limiteExibicao = 6;
     
     document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
     elemento.classList.add('active');
