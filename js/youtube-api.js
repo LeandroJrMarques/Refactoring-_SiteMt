@@ -94,7 +94,7 @@ function renderizarGaleria() {
     const container = document.getElementById('gallery');
     if (!container) return;
 
-    const tagNaMidia = "#namidia_";
+    const tagNaMidia = "#namidia";
 
     const todosFiltrados = state.videosCache.filter(v => {
         const desc = v.descricao.toLowerCase();
