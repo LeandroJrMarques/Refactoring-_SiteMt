@@ -165,6 +165,17 @@ const renderClients = () => {
         });
     }
 };
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('#site-header');
+        if (window.scrollY > 50) {
+            header.classList.add('smaller-header');
+        } else {
+            header.classList.remove('smaller-header');
+        }
+    });
+
 
 renderClients();
+
+
 });

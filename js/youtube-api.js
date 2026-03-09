@@ -1,6 +1,6 @@
-/**
- * Lógica de Integração com YouTube API v3 
- */
+                
+                /* Lógica de Integração com YouTube API v3 */
+                 
 
 const CONFIG = {
     API_KEY: 'AIzaSyCLUQbHibaLinVQu-MgyWzsAECb3R9OpTg',
@@ -140,7 +140,7 @@ function carregarMaisVideos() {
     state.limiteExibicao += 6;
     renderizarGaleria();
 }
-// --- FUNÇÕES DE INTERAÇÃO (MODAL) ---
+                     // --- FUNÇÕES DE INTERAÇÃO (MODAL) ---
 
 function abrirVideo(videoId) {
     const modal = document.getElementById('video-modal');
@@ -172,7 +172,7 @@ function configurarFecharModal() {
     overlay?.addEventListener('click', fecharModal);
 }
 
-// --- FILTROS E UTILITÁRIOS ---
+                    // --- FILTROS E UTILITÁRIOS ---
 
 function renderizarFiltros() {
     const container = document.getElementById('filter-container');

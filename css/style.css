@@ -33,27 +33,43 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     transition: all 0.4s ease-in-out;
 }
 
-/* === Parte não utilizada, mas que pode ser ativada para um efeito de header menor ao rolar. (falta js) === */
-
-
-/*#site-header.smaller-header {
-    height: 70px; 
-    /*background: #FFFFFF !important;  Muda para fundo branco sólido 
+/* Remova a versão antiga e use esta */
+#site-header.smaller-header {
+    height: 75px;
     background-image: none !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}*/
+    /* Efeito Dark Glass: Fundo preto bem translúcido com desfoque */
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Linha sutil no fundo com a cor primária para dar detalhe */
+    border-bottom: 1px solid rgba(223, 145, 46, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
 
-/* Reduz a Logo e "sobe" ela levemente 
+/* Mantém os links brancos e brilhantes ao rolar */
+#site-header.smaller-header #site-nav ul li a {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(223, 145, 46, 0.5);
+}
+
+/* Efeito de Hover nos links quando o header está compacto */
+#site-header.smaller-header #site-nav ul li a:hover {
+    color: var(--primary) !important; /* Usa o laranja #DF912E definido no seu root */
+    text-shadow: 0 0 15px rgba(223, 145, 46, 0.6); /* Adiciona um leve brilho no hover */
+    transition: all 0.3s ease;
+}
+
+/* Opcional: Adiciona a linha animada embaixo também no modo compacto */
+#site-header.smaller-header #site-nav ul li a::after {
+    background-color: var(--primary);
+}
+
+/* Diminui a logo de forma proporcional */
 #site-header.smaller-header .logo {
     height: 45px;
-    transform: translateY(-2px);  
-} */
-
-/* 
-#site-header.smaller-header #site-nav ul li a {
-    color: #333; /* Muda a cor do texto para contrastar com o fundo branco 
-}*/
- 
+    filter: drop-shadow(0 0 5px rgba(223, 145, 46, 0.2));
+}
 
 
 
@@ -246,7 +262,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 .panel {
     background-image: url('../images/bg.jpg');
     background-attachment: fixed;
-    padding: 100px 0;
+    padding: 60px 0;
     clear: both;
     display: block !important;
     overflow: hidden;
@@ -391,7 +407,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 
 .card-info h4 {
     margin: 0 0 8px 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #333;
     transition: color 0.3s ease;
     display: -webkit-box;
@@ -650,16 +666,16 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 20px 10px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
 }
 
 .footer-brand .brand-logo {
-    display: flex;
+    display: bottom;
     align-items: center;
-    gap: 12px;
+    gap: 6px;
     margin-bottom: 20px;
 }
 
@@ -688,13 +704,42 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     padding-bottom: 5px;
 }
 
-.contact-list, .links-list {
+.contact-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.contact-item, .links-list a {
+.links-list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 50px;
+}
+
+.links-list a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.links-list a::before{
+    content: '›';
+    margin-right: 8px;
+    color: var(--primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.links-list a:hover::before {
+    opacity: 1;
+}
+
+.contact-item {
     text-decoration: none;
     color: #ccc;
     font-size: 0.9rem;
@@ -706,6 +751,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 
 .contact-item:hover, .links-list a:hover {
     color: #e69d00e1;
+    transform: translateX(8px);
 }
 
 .contact-icon {
@@ -755,7 +801,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 .footer-social {
     display: flex;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 80px;
 }
 
 .footer-social a {
@@ -776,6 +822,16 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     background: var(--primary); /* Usa o laranja definido no seu :root */
     transform: translateY(-3px);
     color: #fff;
+}
+
+#empresa {
+    padding-bottom: 40px !important; 
+    margin-bottom: 0 !important;
+}
+
+#work {
+    padding-top: 40px !important; 
+    margin-top: 0 !important;
 }
 
 /* Ajuste para mobile */
@@ -803,17 +859,6 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         display: none; /* Idealmente, aqui implementarias um menu hambúrguer */
     }
 
-    /* Banner/Carrossel */
-    .hero-carousel {
-        height: 60vh; 
-    }
-
-    .slide-content {
-        left: 5%;
-        bottom: 10%;
-        padding-right: 20px;
-    }
-
     .slide-title {
         font-size: 1.8rem; 
     }
@@ -828,21 +873,11 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         display: none; /* Remove setas em mobile para evitar cliques acidentais */
     }
 
-    /* Secção Empresa */
-    .empresa-box {
-        width: 100%; 
-        float: none;
-        padding: 20px;
-    }
-
-    .empresa-box img {
-        max-width: 200px;
-    }
-
     /* Grelha de Vídeos e Clientes */
     .video-grid {
         grid-template-columns: 1fr; 
         gap: 15px;
+        padding: 20px 15px
     }
 
 #clients-section {
@@ -875,22 +910,9 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 }
 
  
-.panel {
-    background-image: url('../images/bg.jpg');
-    background-attachment: fixed;
-    background-position: center;     
-    background-repeat: no-repeat;   
-    background-size: cover;          
-    padding: 100px 0;
-    clear: both;
-    display: block !important;
-    overflow: hidden;
-    position: relative;
-    border: none;
-    margin-bottom: 0;
-}
     .panel-heading h1 {
-        font-size: 28px;
+        font-size: 24px;
+        margin-bottom: 20px;
     }
 
     .panel-heading h1::before, .panel-heading h1::after {
@@ -1028,4 +1050,301 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     .header-social.desktop-only {
         display: none;
     }
+}
+
+@media (max-width: 768px) {
+    .hero-carousel {
+        height: 55vh; 
+    }
+    
+    .slide-content {
+        bottom: 8%; 
+        left: 5%;
+        padding-right: 15px;
+    }
+
+    .slide-title {
+        font-size: 1.5rem; 
+        margin-bottom: 10px;
+    }
+
+    .slide-description {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .slide-cta {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .panel {
+        padding: 40px 0; 
+    }
+
+    .empresa-box {
+        width: 90%; 
+        margin: 0 auto;
+        padding: 20px;
+        float: none; 
+    }
+    
+    .empresa-box p {
+        font-size: 0.95rem; 
+        line-height: 1.5;
+    }
+    
+    .empresa-box img {
+        max-width: 150px; 
+    }
+
+    .btn-load-more {
+        margin: 20px auto;
+        padding: 12px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .client-item {
+        aspect-ratio: 3 / 2; 
+        padding: 10px !important;
+    }
+
+    .footer-content {
+        padding: 30px 20px !important;
+    }
+
+    .contact-item span {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 12px !important; 
+        padding: 20px 10px !important;
+    }
+
+    .card-info {
+        padding: 10px 5px !important;
+    }
+
+    .card-info h4 {
+        font-size: 0.85rem !important;
+        line-height: 1.2;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .card-info p {
+        display: none; 
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        display: block !important; /* Muda de grid para bloco para controlo individual */
+        padding: 30px 20px !important;
+        text-align: left; /* Alinha o texto base à esquerda */
+    }
+
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .brand-description {
+        display: none !important; 
+    }
+    .footer-brand .brand-logo {
+        margin-bottom: 0 !important;
+    }
+
+    .footer-links h4 {
+        display: none; 
+    }
+    .links-list {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 20px !important;
+        border-top: 1px solid #444;
+        border-bottom: 1px solid #444;
+        padding: 10px 0;
+    }
+    .links-list a {
+        font-size: 0.75rem !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .footer-contact h4 {
+        font-size: 0.8rem !important;
+        margin-bottom: 12px !important;
+        color: var(--primary);
+    }
+    .contact-list {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px !important;
+    }
+    .contact-item {
+        flex-direction: column !important; 
+        gap: 5px !important;
+        font-size: 0.7rem !important;
+    }
+    .contact-icon {
+        width: 30px !important;
+        height: 30px !important;
+        margin: 0 auto;
+    }
+
+    .footer-bottom {
+        padding: 15px !important;
+    }
+    .footer-bottom-content {
+        justify-content: center !important;
+    }
+    .copyright {
+        font-size: 0.65rem !important;
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-filter {
+        margin: 15px 0 !important; 
+        padding: 0 5px !important;
+    }
+
+    .btn-filter {
+        padding: 6px 12px !important; 
+        font-size: 11px !important; 
+        margin: 3px !important; 
+        border-radius: 4px !important;
+    }
+
+    .panel-heading h1 {
+        font-size: 22px !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 1. Ajuste do Contentor Principal */
+    .footer-content {
+        display: block !important; /* Muda de grid para bloco para controlo individual */
+        padding: 5px 10px !important;
+        text-align: left; /* Alinha o texto base à esquerda */
+    }
+
+    /* 2. Seção Inspire-nos (Lista à Esquerda) */
+    .footer-contact {
+        margin-bottom: 25px;
+    }
+
+    .footer-contact h4 {
+        font-size: 1rem !important;
+        margin-bottom: 15px !important;
+        border-bottom: 2px solid #e69d00e1;
+        display: inline-block;
+    }
+
+    .contact-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: flex-start !important; /* Garante alinhamento à esquerda */
+    }
+
+    .contact-item {
+        flex-direction: row !important; /* Ícone ao lado do texto */
+        font-size: 0.85rem !important;
+        text-align: left;
+    }
+
+    .contact-icon {
+        width: 28px !important;
+        height: 28px !important;
+        margin: 0 !important;
+    }
+
+
+    .footer-social {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 20px 0;
+        padding: 15px 0;
+        border-top: 1px solid #444;
+    }
+
+    .footer-social a {
+        font-size: 1.5rem;
+        color: #fff;
+        transition: color 0.3s;
+    }
+
+    .footer-social a:hover {
+        color: var(--primary);
+    }
+
+    /* 4. Links Rápidos e Brand (Compactação Final) */
+    .footer-brand, .brand-description {
+        display: none !important; /* Remove para manter o "retângulo" baixo */
+    }
+
+    .footer-links {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .links-list {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 15px !important;
+    }
+
+    .links-list a {
+        font-size: 0.75rem !important;
+        color: #888;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Torna o botão do menu visível */
+    #mobile-menu-btn {
+        display: block !important;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    /* Estiliza o Smaller Header no Mobile para ser mais "robusto" */
+    #site-header.smaller-header {
+        height: 60px !important; /* Mais fino no mobile */
+        background: rgba(0, 0, 0, 0.85) !important;
+    }
+
+    /* Ajuste na navegação mobile (se for usar o padrão lateral ou suspenso) */
+    #site-nav.mobile-active {
+        display: block;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #1a1a1a;
+        padding: 20px;
+        border-bottom: 3px solid var(--primary);
+    }
+    .sidebar-overlay {
+    display: hidden;
+    }
+
+   
 }
