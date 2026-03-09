@@ -996,6 +996,8 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 }
 
 /* Ajuste Mobile */
+
+/* Banner Social */
 @media (max-width: 768px) {
     .banner-social {
         top: 120px;
@@ -1036,6 +1038,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
+/* Hero Carousel */
 @media (max-width: 768px) {
     .hero-carousel {
         height: 55vh; 
@@ -1063,6 +1066,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
+/* Empresa-box */ 
 @media (max-width: 768px) {
     .panel {
         padding: 40px 0; 
@@ -1090,6 +1094,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
+/* Clientes Footer */
 @media (max-width: 768px) {
     .client-item {
         aspect-ratio: 3 / 2; 
@@ -1105,6 +1110,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
+/* Videos Youtube*/
 @media (max-width: 768px) {
     .video-grid {
         grid-template-columns: repeat(2, 1fr) !important; 
@@ -1130,6 +1136,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
+/* Footer Mobile 1 */
 @media (max-width: 768px) {
     .footer-content {
         display: block !important; 
@@ -1200,6 +1207,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
+/* Filtro Youtube */
 @media (max-width: 768px) {
     .gallery-filter {
         margin: 15px 0 !important; 
@@ -1219,6 +1227,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
+/* Footer Mobile 2 */
 @media (max-width: 768px) {
     .footer-content {
         display: block !important; 
@@ -1298,6 +1307,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
+/* Menu Hamburguer */
 @media (max-width: 768px) {
     #mobile-menu-btn {
         display: block !important;
