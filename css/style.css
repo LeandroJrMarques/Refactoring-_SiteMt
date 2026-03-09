@@ -37,37 +37,31 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 #site-header.smaller-header {
     height: 75px;
     background-image: none !important;
-    /* Efeito Dark Glass: Fundo preto bem translúcido com desfoque */
     background-color: rgba(0, 0, 0, 0.6) !important;
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
     
-    /* Linha sutil no fundo com a cor primária para dar detalhe */
     border-bottom: 1px solid rgba(223, 145, 46, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Mantém os links brancos e brilhantes ao rolar */
 #site-header.smaller-header #site-nav ul li a {
     color: #fff;
     text-shadow: 0 0 10px rgba(223, 145, 46, 0.5);
 }
 
-/* Efeito de Hover nos links quando o header está compacto */
 #site-header.smaller-header #site-nav ul li a:hover {
-    color: var(--primary) !important; /* Usa o laranja #DF912E definido no seu root */
-    text-shadow: 0 0 15px rgba(223, 145, 46, 0.6); /* Adiciona um leve brilho no hover */
+    color: var(--primary) !important; 
+    text-shadow: 0 0 15px rgba(223, 145, 46, 0.6); 
     transition: all 0.3s ease;
 }
 
-/* Opcional: Adiciona a linha animada embaixo também no modo compacto */
 #site-header.smaller-header #site-nav ul li a::after {
     background-color: var(--primary);
 }
 
-/* Diminui a logo de forma proporcional */
 #site-header.smaller-header .logo {
-    height: 45px;
+    height: 80px;
     filter: drop-shadow(0 0 5px rgba(223, 145, 46, 0.2));
 }
 
@@ -344,7 +338,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transição suave */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     position: relative;
     top: 0;
@@ -807,7 +801,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 .footer-social a {
     width: 35px;
     height: 35px;
-    background: #444; /* Fundo cinza escuro para harmonizar com o rodapé */
+    background: #444; 
     color: #fff;
     display: flex;
     justify-content: center;
@@ -819,7 +813,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 }
 
 .footer-social a:hover {
-    background: var(--primary); /* Usa o laranja definido no seu :root */
+    background: var(--primary); 
     transform: translateY(-3px);
     color: #fff;
 }
@@ -856,7 +850,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 }
 
     #site-nav {
-        display: none; /* Idealmente, aqui implementarias um menu hambúrguer */
+        display: none; 
     }
 
     .slide-title {
@@ -870,7 +864,7 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 
     .nav-arrow {
-        display: none; /* Remove setas em mobile para evitar cliques acidentais */
+        display: none;
     }
 
     /* Grelha de Vídeos e Clientes */
@@ -889,14 +883,12 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         font-size: 10px !important;
     }
 
-    /* Transforma a grade em 3 colunas para evitar ícones muito pequenos */
     .clients-grid {
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 2px !important; 
         padding: 0 10px;
     }
 
-    /* Reduz o tamanho dos containers dos logos para o celular */
     .client-item {
         padding: 12px !important;
         background-color: #f9f9f9;
@@ -935,14 +927,11 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         line-height: 1.4 !important;
     }
 
-    /* Diminui o tamanho dos títulos das seções */
     .footer-contact h4, 
     .footer-links h4 {
         margin-bottom: 15px !important;
         font-size: 1rem !important;
     }
-
-    /* Reduz o tamanho dos itens de contato e ícones */
     .contact-list, 
     .links-list {
         gap: 8px !important; 
@@ -958,7 +947,6 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         width: 14px !important;
     }
 
-    /* Ajusta o rodapé inferior (copyright) */
     .footer-bottom {
         padding: 10px 20px !important;
     }
@@ -968,7 +956,6 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
-/* Esconde as bolinhas do carrossel em dispositivos móveis */
     @media (max-width: 768px) {
         .indicators {
             display: none !important;
@@ -984,7 +971,6 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         pointer-events: none; 
     }
 
-    /* Redes Sociais Fixas no Banner */
 .banner-social {
     position: absolute;
     top: 170px; 
@@ -1021,14 +1007,12 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     }
 }
 
-/* Redes Sociais no Header */
 .header-right {
     display: flex;
     align-items: center;
     gap: 30px; 
 }
 
-/* Estilo dos ícones do Header */
 .header-social {
     display: flex;
     gap: 15px;
@@ -1148,9 +1132,9 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 
 @media (max-width: 768px) {
     .footer-content {
-        display: block !important; /* Muda de grid para bloco para controlo individual */
+        display: block !important; 
         padding: 30px 20px !important;
-        text-align: left; /* Alinha o texto base à esquerda */
+        text-align: left; 
     }
 
     .footer-brand {
@@ -1236,14 +1220,12 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 }
 
 @media (max-width: 768px) {
-    /* 1. Ajuste do Contentor Principal */
     .footer-content {
-        display: block !important; /* Muda de grid para bloco para controlo individual */
+        display: block !important; 
         padding: 5px 10px !important;
-        text-align: left; /* Alinha o texto base à esquerda */
+        text-align: left; 
     }
 
-    /* 2. Seção Inspire-nos (Lista à Esquerda) */
     .footer-contact {
         margin-bottom: 25px;
     }
@@ -1259,11 +1241,11 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         display: flex !important;
         flex-direction: column !important;
         gap: 12px !important;
-        align-items: flex-start !important; /* Garante alinhamento à esquerda */
+        align-items: flex-start !important; 
     }
 
     .contact-item {
-        flex-direction: row !important; /* Ícone ao lado do texto */
+        flex-direction: row !important; 
         font-size: 0.85rem !important;
         text-align: left;
     }
@@ -1294,9 +1276,8 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         color: var(--primary);
     }
 
-    /* 4. Links Rápidos e Brand (Compactação Final) */
     .footer-brand, .brand-description {
-        display: none !important; /* Remove para manter o "retângulo" baixo */
+        display: none !important; 
     }
 
     .footer-links {
@@ -1318,20 +1299,17 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
 }
 
 @media (max-width: 768px) {
-    /* Torna o botão do menu visível */
     #mobile-menu-btn {
         display: block !important;
         cursor: pointer;
         padding: 10px;
     }
 
-    /* Estiliza o Smaller Header no Mobile para ser mais "robusto" */
     #site-header.smaller-header {
-        height: 60px !important; /* Mais fino no mobile */
+        height: 60px !important; 
         background: rgba(0, 0, 0, 0.85) !important;
     }
 
-    /* Ajuste na navegação mobile (se for usar o padrão lateral ou suspenso) */
     #site-nav.mobile-active {
         display: block;
         position: absolute;
