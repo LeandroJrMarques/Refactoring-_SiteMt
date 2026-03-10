@@ -1320,6 +1320,10 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
         background: rgba(0, 0, 0, 0.85) !important;
     }
 
+    #site-header.smaller-header .logo {
+        height: 50px !important;
+    }
+
     #site-nav.mobile-active {
         display: block;
         position: absolute;
