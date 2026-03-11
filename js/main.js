@@ -131,7 +131,7 @@ const clientData = [
     { file: "imip-logo.png", url: "http://www.imip.org.br/" },
     { file: "peconstrutora.png", url: "http://www.pernambucoconstrutora.com.br/" },
     { file: "cdlrecife.png", url: "http://www.cdlrecife.com.br/" },
-    { file: "fcdlpe.png", url: "http://www.fcdlpe.com.br/" },
+    { file: "fcdlpe.png", url: "https://fcdlpe.org/" },
     { file: "sindilojas.png", url: "http://www.sindilojasrecife.com.br/" },
     { file: "cattan.png", url: "http://www.cattan.com.br/" },
     { file: "o-i.png", url: "http://www.o-i.com/" },
@@ -165,6 +165,17 @@ const renderClients = () => {
         });
     }
 };
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('#site-header');
+        if (window.scrollY > 50) {
+            header.classList.add('smaller-header');
+        } else {
+            header.classList.remove('smaller-header');
+        }
+    });
+
 
 renderClients();
+
+
 });
