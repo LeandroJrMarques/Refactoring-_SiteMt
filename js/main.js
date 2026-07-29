@@ -1,18 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
-// === Lógica do Menu Mobile (Pode ser implementado com alguns ajustes) ===
-
-//const menuBtn = document.getElementById('mobile-menu-btn');
-//const nav = document.getElementById('site-nav');
-
-//if (menuBtn) {
-//    menuBtn.addEventListener('click', () => {
-//        nav.classList.toggle('active-mobile');
-//    });
-//}
-
-
     // === 1. Lógica do Banner ===
     const slides = document.querySelectorAll('.slide');
     const btnNext = document.getElementById('btn-next');
@@ -142,7 +130,14 @@ const clientData = [
     { file: "mazzarello.png", url: "https://mazzarellorecife.com.br/" },
     { file: "rocha.png", url: "http://www.portalrocha.com.br/" },
     { file: "amway.png", url: "http://www.amway.com.br/" },
-    { file: "habitat.png", url: "http://www.habitatbrasil.org.br/" }
+    { file: "habitat.png", url: "http://www.habitatbrasil.org.br/" },
+    { file: "EquatorialEnergia.png", url: "http://www.equatorialenergia.com.br/" },
+    { file: "Heineken.png", url: "http://www.heinekenbrasil.com.br/" },
+    { file: "LorealParis.png", url: "http://www.loreal-paris.com.br/" },
+    { file: "Embasa.png", url: "http://www.embasa.ba.com.br/" },
+    { file: "RoraimaEnergia.png", url: "http://www.roraimaenergia.com.br/" },
+    { file: "EdP.png", url: "http://www.edp.com.br/" },
+    { file: "Moura.png", url: "http://www.moura.com.br/"}
 ];
 
 const renderClients = () => {
