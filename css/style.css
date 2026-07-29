@@ -580,7 +580,71 @@ body { font-family: 'PT Sans', sans-serif; color: var(--text); background: #FFF;
     opacity: 1;
 }
 
+/* === Estilos Trabalhe Connosco === */
+.trabalhe-box {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(223, 145, 46, 0.2);
+    color: #333;
+}
+
+.trabalhe-box p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.recrutamento-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-recrutamento {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 40px;
+    background-color: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(223, 145, 46, 0.3);
+}
+
+.btn-recrutamento:hover {
+    transform: translateY(-3px);
+    background-color: #c57d24;
+    box-shadow: 0 6px 20px rgba(223, 145, 46, 0.4);
+}
+
+.email-text {
+    font-size: 0.9rem;
+    color: #777;
+    font-weight: bold;
+}
+
+/* Ajuste Mobile */
+@media (max-width: 768px) {
+    .trabalhe-box {
+        padding: 20px;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .trabalhe-box p {
+        font-size: 0.95rem;
+    }
+}
+
 .site-footer {
+    scroll-margin-top: 300px;
     padding: 32px 0;
     border-top: 1px solid #eee;
     text-align: center;
