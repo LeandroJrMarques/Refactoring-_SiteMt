@@ -60,6 +60,7 @@ if (carousel) {
 
             currentSlide = newIndex;
             resetProgressBar();
+            startAutoPlay();
         }
 
         function resetProgressBar() {
@@ -114,7 +115,7 @@ const clientData = [
     { file: "jucepe.png", url: "http://www.jucepe.pe.gov.br/" },
     { file: "assolan-logo.png", url: "http://www.assolan.com.br/" },
     { file: "mmsagencia-logo.png", url: "https://www.mms.com.br/" },
-    { file: "infinito-logo.png", url: "https://www.agenciainfinito.com.br/" },
+    { file: "infinito-logo.png"},
     { file: "sebrae.png", url: "http://www.sebrae.com.br/" },
     { file: "imip-logo.png", url: "http://www.imip.org.br/" },
     { file: "peconstrutora.png", url: "http://www.pernambucoconstrutora.com.br/" },
