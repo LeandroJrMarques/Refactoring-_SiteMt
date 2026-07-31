@@ -84,15 +84,20 @@ async function carregarTodoOCanal() {
         const btn = document.getElementById('btnLoadMore');
         if (btn) btn.style.display = 'none';
 
-        renderizarGaleria();
+        renderizarGaleria(true); // O 'true' avisa a função que é o primeiro carregamento
     } catch (e) {
         console.error("Erro ao baixar vídeos:", e);
     }
 }
 
-function renderizarGaleria() {
+// A função agora recebe um parâmetro 'reset'
+function renderizarGaleria(reset = false) {
     const container = document.getElementById('gallery');
     if (!container) return;
+
+    if (reset) {
+        container.innerHTML = ''; // Só limpa a galeria se for troca de filtro ou load inicial
+    }
 
     const tagNaMidia = "#namidia";
 
@@ -110,22 +115,26 @@ function renderizarGaleria() {
         return tit.includes(filtro) || desc.includes(filtro);
     });
 
-    const visiveis = todosFiltrados.slice(0, state.limiteExibicao);
+    // O PULO DO GATO: Descobre quantos vídeos já estão na tela e pega apenas os próximos a serem mostrados
+    const qtdAtual = reset ? 0 : container.querySelectorAll('.video-card').length;
+    const novosVideos = todosFiltrados.slice(qtdAtual, state.limiteExibicao);
 
     const btn = document.getElementById('btnLoadMore');
     if (btn) {
         btn.style.display = todosFiltrados.length > state.limiteExibicao ? 'block' : 'none';
     }
 
-    if (visiveis.length === 0) {
+    if (todosFiltrados.length === 0) {
         container.innerHTML = `<div class="info-msg">Nenhum vídeo encontrado.</div>`;
         return;
     }
 
-    container.innerHTML = visiveis.map(v => `
-        <article class="video-card" onclick="abrirVideo('${v.id}')">
+    if (novosVideos.length === 0) return; // Se não tem vídeo novo na fatia, não faz nada
+
+    const html = novosVideos.map(v => `
+        <article class="video-card fade-in-card" onclick="abrirVideo('${v.id}')">
             <div class="thumb-wrapper">
-                <img src="${v.thumb}" alt="${v.titulo}" loading="lazy">
+                <img src="${v.thumb}" alt="${v.titulo}" loading="lazy" onload="this.classList.add('loaded')">
                 <div class="play-overlay"><i class="fas fa-play"></i></div>
             </div>
             <div class="card-info">
@@ -134,12 +143,20 @@ function renderizarGaleria() {
             </div>
         </article>
     `).join('');
+
+    if (reset) {
+        container.innerHTML = html;
+    } else {
+        // Apenas "injeta" os cards novos no final, preservando o HTML dos antigos
+        container.insertAdjacentHTML('beforeend', html); 
+    }
 }
 
 function carregarMaisVideos() {
     state.limiteExibicao += 6;
-    renderizarGaleria();
+    renderizarGaleria(false); // O 'false' garante que os vídeos antigos não sejam apagados
 }
+
 // --- FUNÇÕES DE INTERAÇÃO (MODAL) ---
 
 function abrirVideo(videoId) {
@@ -188,13 +205,12 @@ function renderizarFiltros() {
 
 async function setFiltro(chave, elemento) {
     state.filtroAtual = chave;
-    state.filtroAtual = chave;
     state.limiteExibicao = 6;
     
     document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
     elemento.classList.add('active');
 
-    renderizarGaleria();
+    renderizarGaleria(true); // O 'true' força a limpeza para mostrar a nova categoria do zero
 
     const filtrados = state.videosCache.filter(v => {
         const termo = state.filtroAtual.toLowerCase();

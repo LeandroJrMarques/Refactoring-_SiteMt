@@ -34,6 +34,33 @@ if (carousel) {
 }
 // === Fim da lógica de toque ===
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Seleciona todas as partes da página que vão ter o fade
+    const secoes = document.querySelectorAll('.secao-aba');
+
+    // Configura o observador de interseção
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Se a seção entrou na tela, ganha a classe 'visivel' (Fade In)
+                entry.target.classList.add('visivel');
+            } else {
+                // Se saiu da tela, perde a classe (Fade Out). 
+                // Isso faz o efeito se repetir toda vez que o usuário subir ou descer.
+                entry.target.classList.remove('visivel');
+            }
+        });
+    }, {
+        // Dispara o efeito quando 20% da seção estiver visível na tela
+        threshold: 0.2 
+    });
+
+    // Manda o observador monitorar cada uma das seções
+    secoes.forEach(secao => {
+        observer.observe(secao);
+    });
+});
+
 // === Variáveis para controle do slide e autoplay ===
 
     let currentSlide = 0;

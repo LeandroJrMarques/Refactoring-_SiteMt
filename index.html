@@ -36,6 +36,7 @@
             </div>
         </div>
     </header>
+    
 
     <main>
 <section id="home" class="hero-carousel">
@@ -222,7 +223,7 @@
     </div>
 </section>
 
-        <section id="empresa" class="panel">
+        <section id="empresa" class="panel fade-section">
             <div class="container">
                 <div class="empresa-box">
                     <p>  A <b>Mediateam</b> é uma empresa que tem em seu <b>DNA a inovação</b>.  Há mais de <b>25 anos</b> combinamos <b>arte, tecnologia e interatividade</b>, gerando <b>experiências atrativas e imersivas</b>. 
@@ -241,7 +242,7 @@
             </div>
         </section>
 
-        <section id="work" class="panel">
+        <section id="work" class="panel fade-section">
             <div class="container">
                 <div class="panel-heading"><h1>Trabalhos</h1></div>
                 <div id="filter-container" class="gallery-filter"></div>
@@ -253,7 +254,7 @@
         </section>
     </main>
 
-<section id="clients-section" class="panel clients-white-bg">
+<section id="clients-section" class="panel clients-white-bg fade-section">
     <div class="container">
         <div class="panel-heading">
             <span class="client-subtitle"><b>Clientes</b></span>
@@ -264,7 +265,7 @@
     </div>
 </section>
 
-<section id="trabalhe-conosco" class="panel">
+<section id="trabalhe-conosco" class="panel fade-section">
     <div class="container">
         <div class="trabalhe-box">
             <div class="panel-heading">
@@ -298,7 +299,7 @@
     <script src="js/main.js"></script>
     <script src="js/youtube-api.js"></script>
 
- <footer id="footer" class="footer">
+ <footer id="footer" class="footer fade-section">
     <div class="footer-content">
         <div class="footer-brand">
             <div class="brand-logo">
@@ -360,7 +361,35 @@
 
 <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    document.addEventListener("DOMContentLoaded", () => {
+        const fadeSections = document.querySelectorAll('.fade-section');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Adiciona a classe que torna a seção visível
+                    entry.target.classList.add('is-visible');
+                    
+                    // O PULO DO GATO: Para de observar a seção depois que ela já apareceu.
+                    // Isso impede que ela suma (tela branca) quando crescer ao carregar mais vídeos!
+                    observer.unobserve(entry.target);
+                }
+                // Removemos o "else" que tirava a visibilidade
+            });
+        }, observerOptions);
+
+        fadeSections.forEach(section => {
+            observer.observe(section);
+        });
+    });
 </script>
 </body>
 </html>
