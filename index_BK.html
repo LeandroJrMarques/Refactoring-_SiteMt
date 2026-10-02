@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo_favicon.png" type="image/png">
-    <!-- Player de Música Mediateam (CSS) -->
-    <link rel="stylesheet" href="css/player.css">
 </head>
 <body>
     <header id="site-header">
@@ -38,93 +36,6 @@
             </div>
         </div>
     </header>
-    <!-- ================= PLAYER MEDIATEAM - INICIO (HTML) ================= -->
-    <div id="mt-player" aria-label="Player Mediateam - Lado a Lado">
-        <img src="musica/mt_lado_a_lado.jpg" alt="Capa Lado a Lado" class="mt-capa">
-
-        <div class="mt-centro">
-            <div class="mt-titulo">Lado a Lado <span>| Mediateam</span></div>
-            <canvas id="mt-espectro"></canvas>
-        </div>
-
-        <button class="mt-btn mt-btn-play" id="mt-btn-play" title="Tocar / Parar" aria-label="Tocar ou parar a música">
-            <i class="fas fa-play" id="mt-icone-play"></i>
-        </button>
-
-        <a class="mt-btn" href="musica/mt_lado_a_lado.mp3" download title="Baixar a música" aria-label="Baixar a música">
-            <i class="fas fa-download"></i>
-        </a>
-
-        <button class="mt-btn" id="mt-btn-letra" title="Ver a letra" aria-label="Ver a letra da música">
-            <i class="fas fa-align-left"></i>
-        </button>
-
-        <audio id="mt-audio" src="musica/mt_lado_a_lado.mp3" preload="auto" loop crossorigin="anonymous"></audio>
-    </div>
-
-    <div id="mt-modal-letra" role="dialog" aria-modal="true">
-        <div class="mt-modal-fundo"></div>
-        <div class="mt-modal-caixa">
-            <button class="mt-modal-fechar" id="mt-fechar-letra" aria-label="Fechar">&times;</button>
-            <img src="musica/mt_lado_a_lado.jpg" alt="Capa Lado a Lado" class="mt-capa-modal">
-            <h3>Mediateam | Lado a lado</h3>
-            <p class="mt-modal-sub">Autor: Fabio Nani<br>Agosto de 2026</p>
-<pre>Faz muito tempo,
-Numa sala pequena.
-Só a Irmandade,
-Contra o tempo.
-
-Não tinha promessa,
-Não tinha certeza.
-Mas havia vontade,
-Esperança e fé.
-
-<b>Refrão:</b>
-O que a gente sonha,
-A gente faz nascer.
-O que a gente sonha,
-O mundo vai ver.
-
-Nada foi fácil,
-Conquistamos devagar.
-Mesmo sem estrada,
-Não deixamos de caminhar.
-
-<b>Refrão:</b>
-O que a gente sonha,
-A gente faz nascer.
-O que a gente sonha,
-O mundo vai ver.
-
-Do primeiro traço,
-A muita luz e imersão,
-Em mundos interativos,
-Criados com nossas mãos.
-
-<b>Solo</b>
-
-Não foi a pura sorte.
-Não foi o destino,
-Foi a grande amizade,
-Que sempre imperou.
-
-<b>Refrão:</b>
-O que a gente sonha,
-A gente faz nascer.
-O que a gente sonha,
-Todo o mundo vai ver.
-Médiatim,
-Vai sempre até o fim.
-Médiatim,
-Sempre assim.
-
-O mundo é logo ali.
-E a gente vai chegar.
-Lado a lado...</pre>
-        </div>
-    </div>
-    <!-- ================= PLAYER MEDIATEAM - FIM (HTML) ================= -->
-
     
 
     <main>
@@ -479,7 +390,5 @@ Lado a lado...</pre>
         });
     });
 </script>
-<script src="js/player.js"></script>
-
 </body>
 </html>

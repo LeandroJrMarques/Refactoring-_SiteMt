@@ -1,0 +1,270 @@
+﻿/* ============================================================
+   PLAYER.CSS — Estilos exclusivos do Player de Música Mediateam
+   ============================================================ */
+
+/* ---------------------------------------------------------------
+   PARAMETROS DE AJUSTE DO PLAYER
+   Altere apenas os valores abaixo para calibrar o player.
+   --------------------------------------------------------------- */
+:root {
+  /* Distancia entre a base da logo e o topo do player.
+     AUMENTE se o player estiver colado/encostando na logo.
+     DIMINUA se estiver longe demais da logo. */
+  --mt-gap-logo: 28px;
+
+  /* Deslocamento horizontal em relacao a borda esquerda da logo.
+     AUMENTE para empurrar o player para a direita.
+     DIMINUA (pode ser negativo) para puxar para a esquerda. */
+  --mt-offset-x: 0px;
+
+  /* Largura total do player.
+     AUMENTE se quiser o espectro mais largo.
+     DIMINUA se o player estiver cobrindo conteudo do site. */
+  --mt-largura: 330px;
+
+  /* Altura da barra do player.
+     AUMENTE para um player mais alto e visivel.
+     DIMINUA para um player mais discreto. */
+  --mt-altura: 54px;
+
+  /* Cor de destaque (barras do espectro, botao play e destaques).
+     Troque pelo hexadecimal da cor institucional se desejar.
+     Laranja mais claro: #FF9E3D | Laranja mais escuro: #E05A00 */
+  --mt-cor: #F97316;
+
+  /* Opacidade do fundo do player (0 = transparente, 1 = solido).
+     AUMENTE se o texto estiver dificil de ler sobre o banner.
+     DIMINUA se o player estiver escondendo demais o site. */
+  --mt-fundo-opacidade: 0.82;
+
+  /* Empilhamento do player sobre a pagina.
+     AUMENTE se algum elemento do site ficar por cima do player.
+     DIMINUA se o player estiver cobrindo menus/modais. */
+  --mt-camada: 9500;
+}
+
+/* Caixa principal - fixa na tela, nao acompanha a rolagem */
+#mt-player {
+  position: fixed;
+  top: 90px;   /* valor inicial; o JS recalcula com base na logo */
+  left: 20px;  /* valor inicial; o JS recalcula com base na logo */
+  z-index: var(--mt-camada);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: var(--mt-largura);
+  height: var(--mt-altura);
+  padding: 0 8px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: rgba(15, 17, 20, var(--mt-fundo-opacidade));
+  border: 1px solid rgba(249, 115, 22, 0.22);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: 'PT Sans', Arial, sans-serif;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+#mt-player.mt-visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Capa do disco */
+#mt-player .mt-capa {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #222;
+}
+
+/* Area central: titulo + espectro */
+#mt-player .mt-centro {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+
+#mt-player .mt-titulo {
+  color: #fff;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#mt-player .mt-titulo span {
+  color: var(--mt-cor);
+  font-weight: 400;
+}
+
+/* Canvas do espectro de audio */
+#mt-player canvas {
+  display: block;
+  width: 100%;
+  height: 18px;
+}
+
+/* Botoes */
+#mt-player .mt-btn {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  transition: background .2s ease, color .2s ease, transform .15s ease;
+  text-decoration: none;
+}
+
+#mt-player .mt-btn:hover {
+  background: var(--mt-cor);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+#mt-player .mt-btn-play {
+  background: var(--mt-cor);
+}
+
+/* Pulsacao do play quando o navegador bloqueia o autoplay */
+#mt-player .mt-btn-play.mt-pulsando {
+  animation: mt-pulso 1.4s infinite;
+}
+
+@keyframes mt-pulso {
+  /* RGB da cor laranja definida em --mt-cor (#F97316 = 249,115,22).
+     Se trocar --mt-cor, atualize tambem estes tres valores RGB. */
+  0%   { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.65); }
+  70%  { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+}
+
+/* ---------- MODAL DA LETRA ---------- */
+#mt-modal-letra {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--mt-camada) + 100);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#mt-modal-letra.mt-aberto {
+  display: flex;
+}
+
+#mt-modal-letra .mt-modal-fundo {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+#mt-modal-letra .mt-modal-caixa {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  max-height: 82vh;
+  overflow-y: auto;
+  background: #14171b;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+  padding: 26px 28px 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  font-family: 'PT Sans', Arial, sans-serif;
+}
+
+/* Capa exibida no topo do modal da letra.
+   A imagem aparece INTEIRA, sem corte: a altura acompanha a largura.
+   AUMENTE --mt-capa-modal-largura para a capa ficar maior no modal.
+   DIMINUA se a capa estiver ocupando espaco demais antes da letra. */
+:root { --mt-capa-modal-largura: 100%; }
+
+#mt-modal-letra .mt-capa-modal {
+  display: block;
+  width: var(--mt-capa-modal-largura);
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto 18px;
+  border-radius: 8px;
+  background: #222;
+}
+
+#mt-modal-letra h3 {
+  color: #fff;
+  margin: 0 0 2px;
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+#mt-modal-letra .mt-modal-sub {
+  color: #8b949e;
+  font-size: 12px;
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+
+#mt-modal-letra pre {
+  color: #d7dde3;
+  font-family: 'PT Sans', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+#mt-modal-letra b {
+  color: var(--mt-cor);
+}
+
+#mt-modal-letra .mt-modal-fechar {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #8b949e;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#mt-modal-letra .mt-modal-fechar:hover {
+  color: #fff;
+}
+
+/* ---------- CELULAR ---------- */
+/* AUMENTE o valor de max-width se o player estiver quebrando em tablets */
+@media (max-width: 768px) {
+  :root {
+    --mt-largura: 250px;
+    --mt-altura: 46px;
+    --mt-capa-modal-largura: 100%;
+  }
+
+  #mt-player .mt-capa  { width: 30px; height: 30px; flex: 0 0 30px; }
+  #mt-player .mt-btn   { width: 26px; height: 26px; font-size: 11px; }
+  #mt-player .mt-titulo{ font-size: 10px; }
+  #mt-player canvas    { height: 14px; }
+}

@@ -25,7 +25,7 @@ const CATEGORIAS = {
     "Realidade Aumentada": "realidadeaumentada",
     "Realidade Virtual": "realidadevirtual",
     "Robôs": "robôs",
-    "UMEs": "UMEs",
+    "UMS": "UMs",
     "Interatividade e Interfaces": "interatividadeinterfaces",
     "Jogos Interativos": "jogosinterativos",
     "Produtos": "produtos",
@@ -84,20 +84,15 @@ async function carregarTodoOCanal() {
         const btn = document.getElementById('btnLoadMore');
         if (btn) btn.style.display = 'none';
 
-        renderizarGaleria(true); // O 'true' avisa a função que é o primeiro carregamento
+        renderizarGaleria();
     } catch (e) {
         console.error("Erro ao baixar vídeos:", e);
     }
 }
 
-// A função agora recebe um parâmetro 'reset'
-function renderizarGaleria(reset = false) {
+function renderizarGaleria() {
     const container = document.getElementById('gallery');
     if (!container) return;
-
-    if (reset) {
-        container.innerHTML = ''; // Só limpa a galeria se for troca de filtro ou load inicial
-    }
 
     const tagNaMidia = "#namidia";
 
@@ -115,47 +110,36 @@ function renderizarGaleria(reset = false) {
         return tit.includes(filtro) || desc.includes(filtro);
     });
 
-    // O PULO DO GATO: Descobre quantos vídeos já estão na tela e pega apenas os próximos a serem mostrados
-    const qtdAtual = reset ? 0 : container.querySelectorAll('.video-card').length;
-    const novosVideos = todosFiltrados.slice(qtdAtual, state.limiteExibicao);
+    const visiveis = todosFiltrados.slice(0, state.limiteExibicao);
 
     const btn = document.getElementById('btnLoadMore');
     if (btn) {
         btn.style.display = todosFiltrados.length > state.limiteExibicao ? 'block' : 'none';
     }
 
-    if (todosFiltrados.length === 0) {
+    if (visiveis.length === 0) {
         container.innerHTML = `<div class="info-msg">Nenhum vídeo encontrado.</div>`;
         return;
     }
 
-    if (novosVideos.length === 0) return; // Se não tem vídeo novo na fatia, não faz nada
-
-    const html = novosVideos.map(v => `
-        <article class="video-card fade-in-card" onclick="abrirVideo('${v.id}')">
+    container.innerHTML = visiveis.map(v => `
+        <article class="video-card" onclick="abrirVideo('${v.id}')">
             <div class="thumb-wrapper">
-                <img src="${v.thumb}" alt="${v.titulo}" loading="lazy" onload="this.classList.add('loaded')">
+                <img src="${v.thumb}" alt="${v.titulo}" loading="lazy">
                 <div class="play-overlay"><i class="fas fa-play"></i></div>
             </div>
             <div class="card-info">
                 <h4>${v.titulo}</h4>
+                <p>${v.data}</p>
             </div>
         </article>
     `).join('');
-
-    if (reset) {
-        container.innerHTML = html;
-    } else {
-        // Apenas "injeta" os cards novos no final, preservando o HTML dos antigos
-        container.insertAdjacentHTML('beforeend', html); 
-    }
 }
 
 function carregarMaisVideos() {
     state.limiteExibicao += 6;
-    renderizarGaleria(false); // O 'false' garante que os vídeos antigos não sejam apagados
+    renderizarGaleria();
 }
-
 // --- FUNÇÕES DE INTERAÇÃO (MODAL) ---
 
 function abrirVideo(videoId) {
@@ -204,12 +188,13 @@ function renderizarFiltros() {
 
 async function setFiltro(chave, elemento) {
     state.filtroAtual = chave;
+    state.filtroAtual = chave;
     state.limiteExibicao = 6;
     
     document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
     elemento.classList.add('active');
 
-    renderizarGaleria(true); // O 'true' força a limpeza para mostrar a nova categoria do zero
+    renderizarGaleria();
 
     const filtrados = state.videosCache.filter(v => {
         const termo = state.filtroAtual.toLowerCase();
