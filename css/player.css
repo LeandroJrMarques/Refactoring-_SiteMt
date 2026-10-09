@@ -268,3 +268,28 @@
   #mt-player .mt-titulo{ font-size: 10px; }
   #mt-player canvas    { height: 14px; }
 }
+
+/* ---------- BOTAO FLUTUANTE (a musica e opcional) ---------- */
+#mt-launcher {
+  position: fixed;
+  left: 20px;
+  bottom: 24px;
+  z-index: var(--mt-camada);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--mt-cor);
+  border-radius: 50%;
+  background: rgba(15, 17, 20, 0.85);
+  color: var(--mt-cor);
+  font-size: 18px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: mt-pulso 2.4s infinite;
+  transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), background .2s, color .2s, opacity .3s;
+}
+#mt-launcher:hover { background: var(--mt-cor); color: #fff; transform: scale(1.12) rotate(-8deg); }
+#mt-launcher.mt-oculto { opacity: 0; transform: scale(0.4); pointer-events: none; }
+#mt-player:not(.mt-visivel) { pointer-events: none; }

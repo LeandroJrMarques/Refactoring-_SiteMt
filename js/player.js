@@ -157,7 +157,12 @@
     }
 
     btnPlay.addEventListener('click', function () {
-        if (tocando) parar(); else tocar(false);
+        if (tocando) {
+            parar();
+            player.classList.remove('mt-visivel');
+            var l = document.getElementById('mt-launcher');
+            if (l) l.classList.remove('mt-oculto');
+        } else tocar(false);
     });
 
     audio.addEventListener('play', function () { marcarTocando(true); });
@@ -179,22 +184,18 @@
         posicionarPlayer();
         ajustarCanvas();
         desenhar();
-        player.classList.add('mt-visivel');
 
-        audio.volume = 0;
-        tocar(true);
-
-        var destravar = function () {
-            if (!tocando && audio.paused) { tocar(true); }
-            if (!audio.paused) {
-                ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(function (ev) {
-                    window.removeEventListener(ev, destravar);
-                });
-            }
-        };
-        ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(function (ev) {
-            window.addEventListener(ev, destravar, { passive: true });
-        });
+        // A musica e opcional: so toca quando o visitante clica no botao flutuante.
+        var launcher = document.getElementById('mt-launcher');
+        if (launcher) {
+            launcher.addEventListener('click', function () {
+                posicionarPlayer();
+                player.classList.add('mt-visivel');
+                launcher.classList.add('mt-oculto');
+                audio.volume = 0;
+                tocar(true);
+            });
+        }
     }
 
     window.addEventListener('resize', function () {

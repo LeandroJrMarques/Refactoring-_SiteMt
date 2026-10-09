@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mediateam | Arte Interativa.</title>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -15,6 +17,10 @@
 </head>
 
 <body>
+    <div id="scroll-progress" aria-hidden="true"></div>
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+
     <header id="site-header">
         <div class="container header-flex">
             <a href="#home"><img src="images/logo.png" alt="Mediateam" class="logo"></a>
@@ -40,6 +46,7 @@
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
+                <button id="mobile-menu-btn" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </header>
@@ -67,6 +74,8 @@
 
         <audio id="mt-audio" src="musica/mt_lado_a_lado.mp3" preload="auto" loop crossorigin="anonymous"></audio>
     </div>
+
+    <button id="mt-launcher" aria-label="Tocar a música da Mediateam" title="Tocar música"><i class="fas fa-music"></i></button>
 
     <div id="mt-modal-letra" role="dialog" aria-modal="true">
         <div class="mt-modal-fundo"></div>
@@ -364,79 +373,84 @@ Lado a lado...</pre>
             </div>
         </section>
 
-        <section id="empresa" class="panel fade-section">
-            <div class="container">
-                <div class="empresa-box">
-                    <p> A <b>Mediateam</b> é uma empresa que tem em seu <b>DNA a inovação</b>. Há mais de <b>25 anos</b>
+        <section id="empresa" class="panel panel-empresa">
+            <div class="blob blob-a" aria-hidden="true"></div>
+            <div class="blob blob-b" aria-hidden="true"></div>
+            <div class="container empresa-grid">
+                <div class="empresa-visual reveal" data-tilt>
+                    <div class="orbit" aria-hidden="true"></div>
+                    <div class="orbit orbit-2" aria-hidden="true"></div>
+                    <div class="logo-card">
+                        <img src="images/logo_full.png" alt="Mediateam">
+                    </div>
+                </div>
+
+                <div class="empresa-text">
+                    <p class="lead reveal"> A <b>Mediateam</b> é uma empresa que tem em seu <b>DNA a inovação</b>. Há mais de <b>25 anos</b>
                         combinamos <b>arte, tecnologia e interatividade</b>, gerando <b>experiências atrativas e
                             imersivas</b>.
                     </p>
-                    <br>
-                    <img src="images/logo_full.png">
-                    <br>
-                    <p>
+                    <p class="reveal">
                         <b>Nossa visão</b> tem como premissa a <b>entrega total</b> do projeto, de sua concepção à
                         execução, da manutenção ao monitoramento, <b>garantindo grandes resultados</b>, pois entendemos
                         que nossos clientes não tem que perder seu foco no que fazem de melhor.
                     </p>
-                    <br>
-                    <p>Nossa <b>evolução é motivada</b> pelo desafio de <b>realizar suas ideias!</b></p>
-                    <br>
-                    <h2>
+                    <p class="reveal">Nossa <b>evolução é motivada</b> pelo desafio de <b>realizar suas ideias!</b></p>
+                    <h2 class="inspire reveal">
                         <pre>Inspire-nos!</pre>
                     </h2>
                 </div>
             </div>
         </section>
 
-        <section id="work" class="panel fade-section">
+        <section id="clients-section" class="panel clients-white-bg">
             <div class="container">
                 <div class="panel-heading">
+                    <span class="client-subtitle"><b>Clientes</b></span>
+                </div>
+            </div>
+            <div id="clients-grid" class="clients-grid"></div>
+        </section>
+
+        <section id="work" class="panel panel-work">
+            <div class="container">
+                <div class="panel-heading reveal">
                     <h1>Trabalhos</h1>
                 </div>
-                <div id="filter-container" class="gallery-filter"></div>
+                <div id="filter-container" class="gallery-filter reveal"></div>
                 <div id="gallery" class="video-grid"></div>
                 <div class="load-more-container">
-                    <button id="btnLoadMore" class="btn-load-more">Carregar Mais</button>
+                    <button id="btnLoadMore" class="btn-load-more" data-magnetic>Carregar Mais</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="trabalhe-conosco" class="panel panel-careers">
+            <div class="blob blob-c" aria-hidden="true"></div>
+            <div class="blob blob-d" aria-hidden="true"></div>
+            <div class="container">
+                <div class="trabalhe-box">
+                    <div class="panel-heading reveal">
+                        <h1>Trabalhe Conosco</h1>
+                    </div>
+                    <p class="reveal">Quer fazer parte da nossa equipe e transformar ideias em experiências interativas?</p>
+                    <p class="reveal">Estamos sempre à procura de novos talentos motivados por inovação e tecnologia.</p>
+
+                    <div class="aviso-exclusivo reveal">
+                        <p><strong>Atenção:</strong> Recebemos currículos <strong>exclusivamente</strong> através do canal
+                            abaixo.</p>
+                    </div>
+
+                    <div class="recrutamento-container reveal">
+                        <a href="mailto:selecao@mediateam.com.br" class="btn-recrutamento" data-magnetic>
+                            <i class="far fa-envelope"></i> Enviar Currículo
+                        </a>
+                        <span class="email-text">selecao@mediateam.com.br</span>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <section id="clients-section" class="panel clients-white-bg fade-section">
-        <div class="container">
-            <div class="panel-heading">
-                <span class="client-subtitle"><b>Clientes</b></span>
-            </div>
-
-            <div id="clients-grid" class="clients-grid">
-            </div>
-        </div>
-    </section>
-
-    <section id="trabalhe-conosco" class="panel fade-section">
-        <div class="container">
-            <div class="trabalhe-box">
-                <div class="panel-heading">
-                    <h1>Trabalhe Conosco</h1>
-                </div>
-                <p>Quer fazer parte da nossa equipe e transformar ideias em experiências interativas?</p>
-                <p>Estamos sempre à procura de novos talentos motivados por inovação e tecnologia.</p>
-
-                <div class="aviso-exclusivo">
-                    <p><strong>Atenção:</strong> Recebemos currículos <strong>exclusivamente</strong> através do canal
-                        abaixo.</p>
-                </div>
-
-                <div class="recrutamento-container">
-                    <a href="mailto:selecao@mediateam.com.br" class="btn-recrutamento">
-                        <i class="far fa-envelope"></i> Enviar Currículo
-                    </a>
-                    <span class="email-text">selecao@mediateam.com.br</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div id="video-modal" class="modal">
         <div class="modal-overlay"></div>
@@ -450,12 +464,11 @@ Lado a lado...</pre>
     <script src="js/main.js"></script>
     <script src="js/youtube-api.js"></script>
 
-    <footer id="footer" class="footer fade-section">
+    <footer id="footer" class="footer">
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="brand-logo">
-                    <img src="images/logo_favicon.png" alt="Logo"
-                        style="width: 40px; height: 40px; border-radius: 8px;">
+                    <img src="images/logo_favicon.png" alt="Logo" class="brand-mark">
                     <div class="brand-name">
                         <h3>Mediateam</h3>
                         <span>Arte Interativa</span>
@@ -513,37 +526,8 @@ Lado a lado...</pre>
         </div>
     </footer>
 
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+    <button id="to-top" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const fadeSections = document.querySelectorAll('.fade-section');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Adiciona a classe que torna a seção visível
-                        entry.target.classList.add('is-visible');
-
-                        // O PULO DO GATO: Para de observar a seção depois que ela já apareceu.
-                        // Isso impede que ela suma (tela branca) quando crescer ao carregar mais vídeos!
-                        observer.unobserve(entry.target);
-                    }
-                    // Removemos o "else" que tirava a visibilidade
-                });
-            }, observerOptions);
-
-            fadeSections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
     <script src="js/player.js"></script>
 
 </body>
