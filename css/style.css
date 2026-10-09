@@ -791,7 +791,7 @@ body.cursor-on #cursor-ring { opacity: 1; }
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 26px;
     padding: 36px 0 10px;
     perspective: 1200px;
@@ -1344,4 +1344,9 @@ body.cursor-on #cursor-ring { opacity: 1; }
     body::after { display: none; }
     .reveal { opacity: 1; transform: none; filter: none; }
     .slide-title .w > span { transform: none; }
+}
+
+/* Colunas fixas: a galeria carrega de 6 em 6, entao 3 ou 2 colunas nunca deixam linha incompleta */
+@media (min-width: 769px) and (max-width: 1000px) {
+    .video-grid { grid-template-columns: repeat(2, 1fr); }
 }
