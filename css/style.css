@@ -276,17 +276,18 @@ body.cursor-on #cursor-ring { opacity: 1; }
 
 .slide-image {
     position: absolute;
-    inset: -4%;
+    inset: -1.5%;
     background-size: cover;
+    image-rendering: auto;
     background-position: center;
     pointer-events: none;
-    transform: translate3d(calc(var(--mx) * -22px), calc(var(--my) * -16px), 0) scale(1.08);
+    transform: translate3d(calc(var(--mx) * -12px), calc(var(--my) * -8px), 0) scale(1.02);
     transition: transform 0.8s var(--ease-out);
 }
 .slide.active .slide-image { animation: kenburns 11s ease-out forwards; }
 @keyframes kenburns {
     from { scale: 1; }
-    to   { scale: 1.12; }
+    to   { scale: 1.05; }
 }
 
 /* Vinheta + tom vinho no canto inferior */
