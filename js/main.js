@@ -241,32 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // === 5. Cursor personalizado ===
-    if (finePointer && !reduceMotion) {
-        const dot = document.getElementById('cursor-dot');
-        const ring = document.getElementById('cursor-ring');
-        let mx = 0, my = 0, rx = 0, ry = 0;
-
-        window.addEventListener('mousemove', e => {
-            mx = e.clientX; my = e.clientY;
-            document.body.classList.add('cursor-on');
-            dot.style.transform = `translate(${mx}px, ${my}px)`;
-        });
-        document.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on'));
-
-        const loop = () => {
-            rx += (mx - rx) * 0.16;
-            ry += (my - ry) * 0.16;
-            ring.style.transform = `translate(${rx}px, ${ry}px)`;
-            requestAnimationFrame(loop);
-        };
-        loop();
-
-        const hoverSel = 'a, button, .video-card, .btn-filter, .client-item';
-        document.addEventListener('mouseover', e => ring.classList.toggle('is-hover', !!e.target.closest(hoverSel)));
-    }
-
-    // === 6. Botões magnéticos + ripple ===
+    // === 5. Botões magnéticos + ripple ===
     document.querySelectorAll('[data-magnetic]').forEach(btn => {
         if (finePointer && !reduceMotion) {
             btn.addEventListener('mousemove', e => {
@@ -291,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => span.remove(), 700);
     });
 
-    // === 7. Inclinação 3D + brilho nos cards (delegação: cards nascem via API) ===
+    // === 6. Inclinação 3D + brilho nos cards (delegação: cards nascem via API) ===
     if (finePointer && !reduceMotion) {
         const gallery = document.getElementById('gallery');
         gallery?.addEventListener('mousemove', e => {
