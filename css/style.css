@@ -95,8 +95,8 @@ img { max-width: 100%; }
     width: 10px; height: 10px;
     margin: -5px 0 0 -5px;
     border-radius: 50%;
-    background: #ffd9a0;
-    box-shadow: 0 0 4px #fff, 0 0 10px var(--primary), 0 0 22px var(--primary), 0 0 40px rgba(223, 145, 46, 0.7);
+    background: radial-gradient(circle, #fff3dc 0 18%, #ff9d1f 45%);
+    box-shadow: 0 0 6px #ff9d1f, 0 0 14px #ff9d1f, 0 0 28px #ff8a00, 0 0 48px rgba(255, 138, 0, 0.8);
     pointer-events: none;
     z-index: 99999;
     opacity: 0;
@@ -104,7 +104,7 @@ img { max-width: 100%; }
 }
 body.cursor-on #cursor-dot { opacity: 1; }
 body.cursor-on, body.cursor-on a, body.cursor-on button { cursor: none; }
-#cursor-dot.is-hover { width: 22px; height: 22px; margin: -11px 0 0 -11px; background: rgba(255, 217, 160, 0.85); box-shadow: 0 0 6px #fff, 0 0 18px var(--primary), 0 0 36px var(--primary), 0 0 64px rgba(223, 145, 46, 0.8); }
+#cursor-dot.is-hover { width: 22px; height: 22px; margin: -11px 0 0 -11px; box-shadow: 0 0 8px #ff9d1f, 0 0 22px #ff9d1f, 0 0 44px #ff8a00, 0 0 72px rgba(255, 138, 0, 0.9); }
 /* com modal aberto (iframe do YouTube, letra) volta o ponteiro normal */
 body:has(.modal.active) #cursor-dot,
 body:has(#mt-modal-letra.mt-aberto) #cursor-dot { opacity: 0; }
