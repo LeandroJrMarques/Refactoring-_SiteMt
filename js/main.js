@@ -253,6 +253,20 @@ document.addEventListener('DOMContentLoaded', () => {
             dot.classList.toggle("is-hover", !!e.target.closest("a, button, .video-card, .btn-filter, .client-item")));
     }
 
+    // === Animações do rodapé: rodam até o fim após o hover ===
+    document.querySelectorAll(".brand-logo, .footer-social a, .contact-item").forEach(el => {
+        const target = el.classList.contains("brand-logo") ? el.querySelector(".brand-mark") : el;
+        el.addEventListener("mouseenter", () => {
+            if (target.classList.contains("play")) return;
+            target.classList.add("play");
+            target.addEventListener("animationend", function done(e) {
+                if (e.target !== target) return;
+                target.classList.remove("play");
+                target.removeEventListener("animationend", done);
+            });
+        });
+    });
+
     // === 6. Botões magnéticos + ripple ===
     document.querySelectorAll('[data-magnetic]').forEach(btn => {
         if (finePointer && !reduceMotion) {
