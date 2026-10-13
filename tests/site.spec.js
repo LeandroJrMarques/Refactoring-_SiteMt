@@ -113,12 +113,13 @@ test.describe('Fullbanner (carrossel)', () => {
         }
     });
 
-    test('imagens dos banners HD carregam (HTTP 200)', async ({ site: page }) => {
+    test('imagens originais dos banners carregam (HTTP 200)', async ({ site: page }) => {
         const urls = await page.$$eval('.slide-image', els =>
             els.map(e => getComputedStyle(e).backgroundImage.match(/url\("(.+)"\)/)[1]));
         expect(urls.length).toBe(19);
         for (const u of urls) {
-            expect(u).toContain('/images/FullBanner/hd/');
+            expect(u).toContain('/images/FullBanner/');
+            expect(u).not.toContain('/hd/');
             const r = await page.request.get(u);
             expect(r.status(), u).toBe(200);
         }
