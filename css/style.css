@@ -88,6 +88,31 @@ img { max-width: 100%; }
     box-shadow: 0 0 12px rgba(223, 145, 46, 0.8);
 }
 
+/* Cursor: um ponto discreto, sem anel e sem atraso */
+#cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 10px; height: 10px;
+    margin: -5px 0 0 -5px;
+    border-radius: 50%;
+    background: var(--primary);
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.2s, width 0.25s var(--ease-out), height 0.25s var(--ease-out), margin 0.25s var(--ease-out);
+}
+body.cursor-on #cursor-dot { opacity: 1; }
+body.cursor-on, body.cursor-on a, body.cursor-on button { cursor: none; }
+#cursor-dot.is-hover { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
+/* com modal aberto (iframe do YouTube, letra) volta o ponteiro normal */
+body:has(.modal.active) #cursor-dot,
+body:has(#mt-modal-letra.mt-aberto) #cursor-dot { opacity: 0; }
+body:has(.modal.active), body:has(.modal.active) *,
+body:has(#mt-modal-letra.mt-aberto), body:has(#mt-modal-letra.mt-aberto) * { cursor: auto !important; }
+@media (hover: none), (pointer: coarse) {
+    #cursor-dot { display: none; }
+}
+
 /* ---------- Revelação ao rolar ---------- */
 .reveal {
     opacity: 0;

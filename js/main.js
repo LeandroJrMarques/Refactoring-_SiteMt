@@ -241,7 +241,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // === 5. Botões magnéticos + ripple ===
+    // === Cursor: ponto discreto que cresce sobre elementos clicaveis ===
+    if (finePointer && !reduceMotion) {
+        const dot = document.getElementById("cursor-dot");
+        window.addEventListener("mousemove", e => {
+            document.body.classList.add("cursor-on");
+            dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        });
+        document.addEventListener("mouseleave", () => document.body.classList.remove("cursor-on"));
+        document.addEventListener("mouseover", e =>
+            dot.classList.toggle("is-hover", !!e.target.closest("a, button, .video-card, .btn-filter, .client-item")));
+    }
+
+    // === 6. Botões magnéticos + ripple ===
     document.querySelectorAll('[data-magnetic]').forEach(btn => {
         if (finePointer && !reduceMotion) {
             btn.addEventListener('mousemove', e => {
@@ -266,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => span.remove(), 700);
     });
 
-    // === 6. Inclinação 3D + brilho nos cards (delegação: cards nascem via API) ===
+    // === 7. Inclinação 3D + brilho nos cards (delegação: cards nascem via API) ===
     if (finePointer && !reduceMotion) {
         const gallery = document.getElementById('gallery');
         gallery?.addEventListener('mousemove', e => {
