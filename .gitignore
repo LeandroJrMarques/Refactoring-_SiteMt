@@ -1,3 +1,7 @@
 ﻿index_BK.html
 site/
 web.config
+
+node_modules/
+test-results/
+playwright-report/
